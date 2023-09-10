@@ -8,6 +8,7 @@ export class LoginPage {
     readonly passwordInput: Locator;
     readonly continueButton: Locator;
     readonly loginButton: Locator;
+    readonly passwordErrorMessage: Locator;
 
     constructor(page: Page){
         this.page = page;
@@ -16,6 +17,7 @@ export class LoginPage {
         this.passwordInput = page.getByPlaceholder('Enter password');
         this.continueButton = page.getByRole('button', { name: 'Continue' });
         this.loginButton = page.getByRole('button', { name: 'Log in' });
+        this.passwordErrorMessage = page.getByText('Incorrect email address and / or password.Do you need help logging in?');
     }
 
     async goTo(){
@@ -40,5 +42,13 @@ export class LoginPage {
         await this.passwordInput.click();
         await this.passwordInput.fill(password);
         await this.loginButton.click();
+    }
+
+    async isPasswordFieldHidden(){
+        return await this.passwordInput.isHidden();
+    }
+
+    async isPassworErrorDisplayed(){
+        
     }
 }
