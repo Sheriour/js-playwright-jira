@@ -6,13 +6,20 @@ export class JiraProjectCreationPage {
 
     readonly useTemplateButton: Locator;
     readonly projectNameField: Locator;
+    readonly createProjectButton: Locator;
+    readonly projectKeyInput: Locator;
+    
 
     constructor(page: Page){
         this.page = page;
         
         this.useTemplateButton = page.getByTestId('project-template-select-v2.ui.layout.screens.template-overview.template-overview-card.use-template-button.button');
         this.projectNameField = page.getByTestId('project-create.create-form.name-field.input');
+        this.createProjectButton = page.getByTestId('project-create.create-form.create-screen.submit-button').getByRole('button');
+        this.projectKeyInput = page.getByTestId('project-create.create-form.advanced-dropdown.key-field.textfield');
     }
+
+    
 
     /**
      * Selects a specific template group from the list, eg. "Software Development"
@@ -57,4 +64,18 @@ export class JiraProjectCreationPage {
         await this.projectNameField.fill(projectName);
     }
 
+    /**
+     * Wait for project key to autopopulate
+     */
+    async waitForProjectKey(){
+        await expect(this.projectKeyInput).not.toBeEmpty();
+    }
+
+        
+    /**
+     * Click "Create project" to finish creation process
+     */
+    async clickCreateProject(){
+        await this.createProjectButton.click();
+    }
 }

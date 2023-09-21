@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { JiraAPI } from './Utils/jira-api';
 
 /**
  * Read environment variables from file.
@@ -28,6 +29,17 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    headless: false,
+
+    launchOptions: {
+      args: ['--disable-web-security']
+    },
+
+    extraHTTPHeaders: {
+      // Add authorization token to all requests.
+      'Authorization': 'Basic ' + JiraAPI.generateBasicToken(),
+    },
   },
 
   /* Configure projects for major browsers */
