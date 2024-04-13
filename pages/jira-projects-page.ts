@@ -12,6 +12,7 @@ export class JiraProjectsPage {
 
         this.projectsHeader = page.getByRole('heading', { name: 'Projects' });
         this.newProjectButton = page.getByTestId('global-pages.directories.projects-directory-v3.create-projects-button');
+
     }
 
     /**

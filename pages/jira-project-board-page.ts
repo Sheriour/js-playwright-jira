@@ -12,7 +12,7 @@ export class JiraProjectBoardPage {
     
     constructor(page: Page){
         this.page = page;
-        this.kanbanCreateIssue = this.page.getByTestId('platform-inline-card-create.ui.trigger.visible.button');
+        this.kanbanCreateIssue = this.page.getByTestId('platform-inline-card-create.ui.trigger.visible.button').first();
         this.scrumNoSprints = this.page.getByText('Get started in the backlog');
         this.teamManagedProjectText = this.page.getByText('You\'re in a team-managed project');
         this.companyManagedProjectText = this.page.getByText('You\'re in a company-managed project');

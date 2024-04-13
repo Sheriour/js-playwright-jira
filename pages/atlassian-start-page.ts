@@ -10,8 +10,9 @@ export class AtlassianStartPage {
     constructor(page: Page){
         this.page = page;
 
-        this.homePageButton = page.getByRole('button', { name: 'Home' });
-        this.jiraButton = page.locator('button').filter({ hasText: 'Jira Softwaremarek-dziekan-automation' });
+        this.homePageButton = page.getByTestId('primary-button-home');
+        this.jiraButton = page.getByRole('link', { name: 'Jira Work Management marek-dziekan-automation' });
+
     }
 
     async isUserLoggedIn(){
